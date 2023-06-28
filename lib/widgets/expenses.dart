@@ -33,16 +33,22 @@ class _ExpensesState extends State<Expenses> {
 
   void _openAddExpense() {
     showModalBottomSheet(
+      isScrollControlled: true,
       context: context,
-      builder: (ctx) => const NewExpense(),
+      builder: (ctx) => NewExpense(addExpense: _addExpense),
     );
+  }
+
+  void _addExpense(Expense expense) {
+    setState(() {
+      _registeredExpenses.add(expense);
+    });
   }
 
   @override
   Widget build(context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.amber[400],
         centerTitle: false,
         title: const Text('Expense Tracker'),
         actions: [
