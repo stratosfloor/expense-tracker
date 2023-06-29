@@ -1,5 +1,6 @@
 import 'package:expense_tracker/models/expense.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
 
 class NewExpense extends StatefulWidget {
   const NewExpense({super.key, required this.addExpense});
@@ -132,7 +133,7 @@ class _NewExpenseState extends State<NewExpense> {
                       (cat) => DropdownMenuItem(
                         value: cat,
                         child: Text(
-                          cat.name.toUpperCase(),
+                          toBeginningOfSentenceCase(cat.name)!,
                         ),
                       ),
                     )
