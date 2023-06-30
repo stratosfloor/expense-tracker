@@ -22,7 +22,7 @@ class _ExpensesState extends State<Expenses> {
         category: Category.work),
     Expense(
         title: 'Beer',
-        amount: 99999,
+        amount: 999,
         date: DateTime.now(),
         category: Category.drinks),
     Expense(
@@ -34,9 +34,11 @@ class _ExpensesState extends State<Expenses> {
 
   void _openAddExpense() {
     showModalBottomSheet(
+      useSafeArea: true,
       isScrollControlled: true,
       context: context,
       builder: (ctx) => NewExpense(addExpense: _addExpense),
+      constraints: const BoxConstraints(maxWidth: double.infinity),
     );
   }
 
@@ -70,6 +72,9 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(context) {
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+
     Widget mainContent = const Center(
       child: Text('No expenses found. Start adding. '),
     );
@@ -92,14 +97,25 @@ class _ExpensesState extends State<Expenses> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Chart(expenses: _registeredExpenses),
-          Expanded(
-            child: mainContent,
-          ),
-        ],
-      ),
+      body: width < height
+          ? Column(
+              children: [
+                Chart(expenses: _registeredExpenses),
+                Expanded(
+                  child: mainContent,
+                ),
+              ],
+            )
+          : Row(
+              children: [
+                Expanded(
+                  child: Chart(expenses: _registeredExpenses),
+                ),
+                Expanded(
+                  child: mainContent,
+                ),
+              ],
+            ),
     );
   }
 }
