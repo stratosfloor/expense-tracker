@@ -81,7 +81,6 @@ class _NewExpenseState extends State<NewExpense> {
     final keyboardSpace = MediaQuery.of(context).viewInsets.bottom;
     return LayoutBuilder(builder: (ctx, contraints) {
       final width = contraints.maxWidth;
-      final height = contraints.maxHeight;
 
       return SizedBox(
         height: double.infinity,
