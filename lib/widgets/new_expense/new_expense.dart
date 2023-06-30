@@ -1,4 +1,5 @@
 import 'package:expense_tracker/models/expense.dart';
+import 'package:expense_tracker/widgets/new_expense/new_expense_amount.dart';
 import 'package:expense_tracker/widgets/new_expense/new_expense_title.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
@@ -99,15 +100,8 @@ class _NewExpenseState extends State<NewExpense> {
                               titleController: _titleController)),
                       const SizedBox(width: 24),
                       Expanded(
-                        child: TextField(
-                          controller: _amountController,
-                          keyboardType: TextInputType.number,
-                          decoration: const InputDecoration(
-                            prefixText: '\$ ',
-                            label: Text('Amount'),
-                            // hintText: 'Enter amount',
-                          ),
-                        ),
+                        child: NewExpenseAmount(
+                            amountController: _amountController),
                       ),
                     ],
                   )
@@ -158,14 +152,8 @@ class _NewExpenseState extends State<NewExpense> {
                   Row(
                     children: [
                       Expanded(
-                        child: TextField(
-                          controller: _amountController,
-                          keyboardType: TextInputType.number,
-                          decoration: const InputDecoration(
-                            prefixText: '\$ ',
-                            label: Text('Amount'),
-                            // hintText: 'Enter amount',
-                          ),
+                        child: NewExpenseAmount(
+                          amountController: _amountController,
                         ),
                       ),
                       const SizedBox(width: 16),
