@@ -1,4 +1,5 @@
 import 'package:expense_tracker/models/expense.dart';
+import 'package:expense_tracker/widgets/new_expense/new_expence_button_cancel.dart';
 import 'package:expense_tracker/widgets/new_expense/new_expense_amount.dart';
 import 'package:expense_tracker/widgets/new_expense/new_expense_datepicker.dart';
 import 'package:expense_tracker/widgets/new_expense/new_expense_dropdown.dart';
@@ -152,12 +153,7 @@ class _NewExpenseState extends State<NewExpense> {
                   Row(
                     children: [
                       const Spacer(),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text('Cancel'),
-                      ),
+                      const NewExpenseButtonCancel(),
                       ElevatedButton(
                         onPressed: _sumbitExpenseData,
                         child: const Text('Save Expense'),
@@ -172,12 +168,7 @@ class _NewExpenseState extends State<NewExpense> {
                         onChangeDropdown: _onChangeDropdown,
                       ),
                       const Spacer(),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text('Cancel'),
-                      ),
+                      const NewExpenseButtonCancel(),
                       ElevatedButton(
                         onPressed: _sumbitExpenseData,
                         child: const Text('Save Expense'),
