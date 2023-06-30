@@ -1,5 +1,6 @@
 import 'package:expense_tracker/models/expense.dart';
 import 'package:expense_tracker/widgets/new_expense/new_expense_amount.dart';
+import 'package:expense_tracker/widgets/new_expense/new_expense_dropdown.dart';
 import 'package:expense_tracker/widgets/new_expense/new_expense_title.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
@@ -71,6 +72,13 @@ class _NewExpenseState extends State<NewExpense> {
     Navigator.pop(context);
   }
 
+  void _onChangeDropdown(Category? value) {
+    if (value == null) return;
+    setState(() {
+      _selectedCategory = value;
+    });
+  }
+
   @override
   void dispose() {
     _titleController.dispose();
@@ -110,25 +118,9 @@ class _NewExpenseState extends State<NewExpense> {
                 if (width >= 600)
                   Row(
                     children: [
-                      DropdownButton(
-                        value: _selectedCategory,
-                        items: Category.values
-                            .map(
-                              (cat) => DropdownMenuItem(
-                                value: cat,
-                                child: Text(
-                                  toBeginningOfSentenceCase(cat.name)!,
-                                ),
-                              ),
-                            )
-                            .toList(),
-                        onChanged: (val) {
-                          if (val == null) return;
-                          setState(() {
-                            _selectedCategory = val;
-                          });
-                        },
-                      ),
+                      NewExpenseDropdown(
+                          selectedCategory: _selectedCategory,
+                          onChangeDropdown: _onChangeDropdown),
                       const SizedBox(width: 24),
                       Expanded(
                         child: Row(
@@ -195,24 +187,9 @@ class _NewExpenseState extends State<NewExpense> {
                 else
                   Row(
                     children: [
-                      DropdownButton(
-                        value: _selectedCategory,
-                        items: Category.values
-                            .map(
-                              (cat) => DropdownMenuItem(
-                                value: cat,
-                                child: Text(
-                                  toBeginningOfSentenceCase(cat.name)!,
-                                ),
-                              ),
-                            )
-                            .toList(),
-                        onChanged: (val) {
-                          if (val == null) return;
-                          setState(() {
-                            _selectedCategory = val;
-                          });
-                        },
+                      NewExpenseDropdown(
+                        selectedCategory: _selectedCategory,
+                        onChangeDropdown: _onChangeDropdown,
                       ),
                       const Spacer(),
                       TextButton(
