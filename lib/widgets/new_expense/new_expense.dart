@@ -1,6 +1,7 @@
 import 'package:expense_tracker/models/expense.dart';
 import 'package:expense_tracker/widgets/new_expense/new_expence_button_cancel.dart';
 import 'package:expense_tracker/widgets/new_expense/new_expense_amount.dart';
+import 'package:expense_tracker/widgets/new_expense/new_expense_button_save.dart';
 import 'package:expense_tracker/widgets/new_expense/new_expense_datepicker.dart';
 import 'package:expense_tracker/widgets/new_expense/new_expense_dropdown.dart';
 import 'package:expense_tracker/widgets/new_expense/new_expense_title.dart';
@@ -37,7 +38,7 @@ class _NewExpenseState extends State<NewExpense> {
     });
   }
 
-  void _sumbitExpenseData() {
+  void _submitExpenseData() {
     final enteredAmount = double.tryParse(_amountController.text);
     final amountIsInvalid = enteredAmount == null || enteredAmount <= 0;
 
@@ -154,10 +155,8 @@ class _NewExpenseState extends State<NewExpense> {
                     children: [
                       const Spacer(),
                       const NewExpenseButtonCancel(),
-                      ElevatedButton(
-                        onPressed: _sumbitExpenseData,
-                        child: const Text('Save Expense'),
-                      ),
+                      NewExpenseButtonSave(
+                          submitExpenseData: _submitExpenseData),
                     ],
                   )
                 else
@@ -169,10 +168,8 @@ class _NewExpenseState extends State<NewExpense> {
                       ),
                       const Spacer(),
                       const NewExpenseButtonCancel(),
-                      ElevatedButton(
-                        onPressed: _sumbitExpenseData,
-                        child: const Text('Save Expense'),
-                      ),
+                      NewExpenseButtonSave(
+                          submitExpenseData: _submitExpenseData),
                     ],
                   )
               ],
