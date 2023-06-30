@@ -1,9 +1,9 @@
 import 'package:expense_tracker/models/expense.dart';
 import 'package:expense_tracker/widgets/new_expense/new_expense_amount.dart';
+import 'package:expense_tracker/widgets/new_expense/new_expense_datepicker.dart';
 import 'package:expense_tracker/widgets/new_expense/new_expense_dropdown.dart';
 import 'package:expense_tracker/widgets/new_expense/new_expense_title.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
 
 class NewExpense extends StatefulWidget {
   const NewExpense({super.key, required this.addExpense});
@@ -123,21 +123,11 @@ class _NewExpenseState extends State<NewExpense> {
                           onChangeDropdown: _onChangeDropdown),
                       const SizedBox(width: 24),
                       Expanded(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(_selectedDate != null
-                                ? formatter.format(_selectedDate!)
-                                : 'No date selected'),
-                            // : formatter.format(DateTime.now())),
-                            IconButton(
-                              onPressed: _presentDatePicker,
-                              icon: const Icon(Icons.calendar_month),
-                            )
-                          ],
+                        child: NewExpenseDatepicker(
+                          selectedDate: _selectedDate,
+                          presentDatePicker: _presentDatePicker,
                         ),
-                      )
+                      ),
                     ],
                   )
                 else
@@ -150,19 +140,9 @@ class _NewExpenseState extends State<NewExpense> {
                       ),
                       const SizedBox(width: 16),
                       Expanded(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(_selectedDate != null
-                                ? formatter.format(_selectedDate!)
-                                : 'No date selected'),
-                            // : formatter.format(DateTime.now())),
-                            IconButton(
-                              onPressed: _presentDatePicker,
-                              icon: const Icon(Icons.calendar_month),
-                            )
-                          ],
+                        child: NewExpenseDatepicker(
+                          selectedDate: _selectedDate,
+                          presentDatePicker: _presentDatePicker,
                         ),
                       )
                     ],
