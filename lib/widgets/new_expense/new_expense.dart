@@ -1,4 +1,5 @@
 import 'package:expense_tracker/models/expense.dart';
+import 'package:expense_tracker/widgets/new_expense/new_expense_title.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
 
@@ -94,16 +95,8 @@ class _NewExpenseState extends State<NewExpense> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
-                        child: TextField(
-                          controller: _titleController,
-                          maxLength: 50,
-                          autofocus: false,
-                          decoration: const InputDecoration(
-                            label: Text('Title'),
-                            hintText: 'Enter Title',
-                          ),
-                        ),
-                      ),
+                          child: NewExpenseTitle(
+                              titleController: _titleController)),
                       const SizedBox(width: 24),
                       Expanded(
                         child: TextField(
@@ -119,15 +112,7 @@ class _NewExpenseState extends State<NewExpense> {
                     ],
                   )
                 else
-                  TextField(
-                    controller: _titleController,
-                    maxLength: 50,
-                    autofocus: false,
-                    decoration: const InputDecoration(
-                      label: Text('Title'),
-                      hintText: 'Enter Title',
-                    ),
-                  ),
+                  NewExpenseTitle(titleController: _titleController),
                 if (width >= 600)
                   Row(
                     children: [
